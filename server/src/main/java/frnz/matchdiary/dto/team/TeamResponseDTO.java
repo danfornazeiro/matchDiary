@@ -1,24 +1,28 @@
-package frnz.matchdiary.model;
+package frnz.matchdiary.dto.team;
 
+import frnz.matchdiary.model.Team;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Table(name = "team")
-@Entity(name = "team")
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Team {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class TeamResponseDTO {
+
     private long id;
-    @Column(name = "name")
+
     private String name;
-    @Column(name = "state")
+
     private String state;
-    @Column(name = "photo_url")
+
     private String photoUrl;
+
+    public TeamResponseDTO(Team team) {
+        this(team.getId(), team.getName(), team.getState(), team.getPhotoUrl());
+    }
 }
