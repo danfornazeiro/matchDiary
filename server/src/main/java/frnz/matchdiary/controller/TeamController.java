@@ -1,5 +1,6 @@
 package frnz.matchdiary.controller;
 
+import frnz.matchdiary.dto.team.TeamRequestDTO;
 import frnz.matchdiary.dto.team.TeamResponseDTO;
 import frnz.matchdiary.model.Team;
 import frnz.matchdiary.service.TeamService;
@@ -7,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/team")
@@ -18,8 +19,8 @@ public class TeamController {
 
 
     @GetMapping("/all")
-    public String getAllTeams(){
-        return "Teste";
+    public List<Team> getAllTeams(){
+        return teamService.getAllTeams();
     }
 
     @GetMapping("/{id}")
@@ -27,9 +28,9 @@ public class TeamController {
         return ResponseEntity.ok(teamService.getTeamById(id));
     }
 
-    @PostMapping()
-    public String addTeam(@RequestBody Team team){
-        return "";
+    @PostMapping
+    public ResponseEntity<Team> addTeam(@RequestBody TeamRequestDTO teamRequestDTO){
+        return ResponseEntity.ok(teamService.registerTeam(teamRequestDTO));
     }
 
     @PutMapping

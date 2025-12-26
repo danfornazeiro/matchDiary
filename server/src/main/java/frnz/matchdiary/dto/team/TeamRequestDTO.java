@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TeamResponseDTO {
+public class TeamRequestDTO {
 
     private Long id;
 
@@ -21,7 +21,5 @@ public class TeamResponseDTO {
 
     private String photoUrl;
 
-    public TeamResponseDTO(Team team) {
-        this(team.getId(), team.getName(), team.getState(), team.getPhotoUrl());
-    }
+
 }
