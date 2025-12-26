@@ -34,13 +34,14 @@ public class TeamController {
     }
 
     @PutMapping
-    public String updateTeam(@RequestBody Team team){
-        return "";
+    public ResponseEntity<Team> updateTeam(@RequestBody TeamRequestDTO teamRequestDTO){
+        return ResponseEntity.ok(teamService.updateTeam(teamRequestDTO));
     }
 
-    @DeleteMapping("{id}")
-    public String deleteTeam(@RequestParam("id") Long id){
-        return "";
+    @DeleteMapping("/{id}")
+    public String deleteTeam(@PathVariable("id") Long id){
+        teamService.deleteTeam(id);
+        return "Team deleted successfully";
     }
 
 }
